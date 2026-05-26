@@ -1,14 +1,16 @@
 export default async function handler(req, res) {
 
-  if (req.method !== "POST") {
-
-    return res.status(405).json({
-      error: "Method not allowed"
-    });
-
-  }
-
   try {
+
+    if (req.method !== "POST") {
+
+      return res.status(405).json({
+        error: "Method not allowed"
+      });
+
+    }
+
+    const { messages } = req.body;
 
     const response = await fetch(
 
@@ -31,9 +33,11 @@ export default async function handler(req, res) {
 
           model: "Meta-Llama-3.1-70B-Instruct",
 
-          messages: req.body.messages,
+          messages: messages,
 
-          temperature: 0.7
+          temperature: 0.7,
+
+          top_p: 0.9
 
         })
 
@@ -43,7 +47,9 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    res.status(200).json(data);
+    console.log(data);
+
+    return res.status(200).json(data);
 
   }
 
@@ -51,8 +57,10 @@ export default async function handler(req, res) {
 
     console.error(error);
 
-    res.status(500).json({
-      error: "Server error"
+    return res.status(500).json({
+
+      error: error.message
+
     });
 
   }

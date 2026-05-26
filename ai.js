@@ -1,14 +1,16 @@
-const API_KEY = "1a44091d-e580-43e1-b810-6174ab18a38b";
+const sendBtn =
+  document.getElementById("sendBtn");
 
-const sendBtn = document.getElementById("sendBtn");
+const userInput =
+  document.getElementById("userInput");
 
-const userInput = document.getElementById("userInput");
-
-const chatBox = document.getElementById("chatBox");
+const chatBox =
+  document.getElementById("chatBox");
 
 sendBtn.addEventListener("click", async () => {
 
-  const message = userInput.value.trim();
+  const message =
+    userInput.value.trim();
 
   if (!message) return;
 
@@ -20,7 +22,7 @@ sendBtn.addEventListener("click", async () => {
 
     const response = await fetch(
 
-      "https://api.sambanova.ai/v1/chat/completions",
+      "/api/chat",
 
       {
 
@@ -28,25 +30,14 @@ sendBtn.addEventListener("click", async () => {
 
         headers: {
 
-          "Authorization": `Bearer ${API_KEY}`,
-
-          "Content-Type": "application/json"
+          "Content-Type":
+            "application/json"
 
         },
 
         body: JSON.stringify({
 
-          model: "Meta-Llama-3.1-70B-Instruct",
-
           messages: [
-
-            {
-
-              role: "system",
-
-              content: "You are a helpful AI assistant."
-
-            },
 
             {
 
@@ -56,11 +47,7 @@ sendBtn.addEventListener("click", async () => {
 
             }
 
-          ],
-
-          temperature: 0.7,
-
-          top_p: 0.9
+          ]
 
         })
 
@@ -68,22 +55,26 @@ sendBtn.addEventListener("click", async () => {
 
     );
 
-    const text = await response.text();
+    const data =
+      await response.json();
 
-    console.log(text);
-
-    const data = JSON.parse(text);
+    console.log(data);
 
     if (data.error) {
 
-      addMessage(data.error.message, "ai");
+      addMessage(
+        "Error: " + data.error,
+        "ai"
+      );
 
       return;
 
     }
 
     const aiReply =
-      data.choices[0].message.content;
+
+      data.choices[0]
+      .message.content;
 
     addMessage(aiReply, "ai");
 
@@ -93,7 +84,10 @@ sendBtn.addEventListener("click", async () => {
 
     console.error(error);
 
-    addMessage("AI request failed", "ai");
+    addMessage(
+      "AI request failed",
+      "ai"
+    );
 
   }
 
@@ -101,7 +95,8 @@ sendBtn.addEventListener("click", async () => {
 
 function addMessage(text, sender) {
 
-  const div = document.createElement("div");
+  const div =
+    document.createElement("div");
 
   div.style.padding = "15px";
 
@@ -109,19 +104,24 @@ function addMessage(text, sender) {
 
   div.style.borderRadius = "12px";
 
-  div.style.whiteSpace = "pre-wrap";
+  div.style.whiteSpace =
+    "pre-wrap";
 
   div.style.color = "white";
 
   div.style.background =
+
     sender === "user"
+
       ? "#20304d"
+
       : "#17382d";
 
   div.innerText = text;
 
   chatBox.appendChild(div);
 
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop =
+    chatBox.scrollHeight;
 
 }
