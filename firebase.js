@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-const app = initializeApp(firebaseConfig);
 
 const firebaseConfig = {
   apiKey: "AIzaSyBaw6QKzIXqd299Fks9RPLI9heQ3Alq0Aw",
@@ -9,5 +8,6 @@ const firebaseConfig = {
   messagingSenderId: "153493663214",
 appId: "1:153493663214:web: 54073d4e1788570ca232ff"
 };
+const app = initializeApp(firebaseConfig);
 
 console.log("Firebase Connected");
