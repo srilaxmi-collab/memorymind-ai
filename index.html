@@ -361,6 +361,67 @@ content="MemoryMind AI is a multimodal AI assistant with memory, PDF chat, voice
   </div>
 
 </section>
+<div
+  style="
+  max-width:800px;
+  margin:auto;
+  padding:40px;
+  "
+>
+
+  <h2 style="text-align:center;">
+    MemoryMind AI Chat
+  </h2>
+
+  <div
+    id="chatBox"
+    style="
+    height:400px;
+    overflow-y:auto;
+    background:#121826;
+    padding:20px;
+    border-radius:20px;
+    margin-top:20px;
+    "
+  >
+  </div>
+
+  <div
+    style="
+    display:flex;
+    margin-top:20px;
+    gap:10px;
+    "
+  >
+
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Ask AI anything..."
+      style="
+      flex:1;
+      padding:15px;
+      border-radius:10px;
+      border:none;
+      "
+    />
+
+    <button
+      id="sendBtn"
+      style="
+      padding:15px 25px;
+      border:none;
+      border-radius:10px;
+      background:#58e6c5;
+      cursor:pointer;
+      "
+    >
+      Send
+    </button>
+
+  </div>
+
+</div>
 
 <footer class="footer" id="contact">
   <p>
@@ -368,5 +429,6 @@ content="MemoryMind AI is a multimodal AI assistant with memory, PDF chat, voice
   </p>
 </footer>
 <script type="module" src="login.js"></script>
+<script src="ai.js"></script>
 </body>
 </html>
