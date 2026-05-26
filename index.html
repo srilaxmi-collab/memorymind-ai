@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MemoryMind AI</title>
+
+  <meta name="description" content="MemoryMind AI is a multimodal AI assistant with memory, PDF chat, voice AI, streaming replies, OTP authentication, and image understanding." />
+
+  <meta name="keywords" content="AI assistant, PDF chat, voice AI, MemoryMind, multimodal AI, streaming AI, AI notes" />
+
+  <meta property="og:title" content="MemoryMind AI" />
+  <meta property="og:description" content="AI workspace with memory, voice AI, image understanding, and PDF chat." />
+
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="favicon.ico" />
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#0b0f19;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      position:sticky;
+      top:0;
+      background:#0b0f19;
+      z-index:100;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav h1{
+      color:#58e6c5;
+      font-size:28px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:40px;
+      background:radial-gradient(circle at top,#103c45,#0b0f19);
+    }
+
+    .hero h2{
+      font-size:70px;
+      max-width:900px;
+      line-height:1.1;
+    }
+
+    .hero span{
+      color:#58e6c5;
+    }
+
+    .hero p{
+      margin-top:20px;
+      max-width:700px;
+      color:#b5bfd2;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    .buttons{
+      margin-top:30px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border:none;
+      border-radius:40px;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .primary{
+      background:#58e6c5;
+      color:black;
+      font-weight:bold;
+    }
+
+    .secondary{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .features{
+      padding:100px 8%;
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .title h2{
+      font-size:50px;
+    }
+
+    .title p{
+      color:#b5bfd2;
+      margin-top:10px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:#121826;
+      border:1px solid rgba(255,255,255,0.08);
+      padding:30px;
+      border-radius:20px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:#58e6c5;
+    }
+
+    .card h3{
+      margin-top:15px;
+      margin-bottom:10px;
+      color:#58e6c5;
+    }
+
+    .card p{
+      color:#b5bfd2;
+      line-height:1.7;
+    }
+
+    .demo{
+      padding:100px 8%;
+      text-align:center;
+    }
+
+    .chatbox{
+      margin:auto;
+      margin-top:40px;
+      max-width:850px;
+      background:#121826;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .chat-header{
+      background:#161f33;
+      padding:20px;
+      font-weight:bold;
+      color:#58e6c5;
+    }
+
+    .chat-body{
+      padding:30px;
+      text-align:left;
+    }
+
+    .message{
+      margin-bottom:20px;
+      padding:15px;
+      border-radius:15px;
+      line-height:1.7;
+    }
+
+    .user{
+      background:#1e2c48;
+    }
+
+    .ai{
+      background:#14352f;
+    }
+
+    .footer{
+      padding:40px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.1);
+      color:#b5bfd2;
+    }
+
+    @media(max-width:768px){
+      .hero h2{
+        font-size:42px;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <h1>MemoryMind AI</h1>
+
+  <div>
+    <a href="#features">Features</a>
+    <a href="#demo">Demo</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h2>
+    AI That Can <span>Remember</span>, Listen, Understand Images, and Chat With You.
+  </h2>
+
+  <p>
+    MemoryMind AI is a next-generation multimodal AI assistant with streaming replies, PDF chat, AI notes, image understanding, multilingual voice AI, and secure OTP login.
+  </p>
+
+  <div class="buttons">
+    <button class="btn primary">Launch AI</button>
+    <button class="btn secondary">Explore Features</button>
+  </div>
+</section>
+
+<section class="features" id="features">
+
+  <div class="title">
+    <h2>Powerful AI Features</h2>
+    <p>Built for real-world productivity and intelligent conversations.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Voice AI</h3>
+      <p>Multi-language voice assistant with male/female AI voices and emotion-aware responses.</p>
+    </div>
+
+    <div class="card">
+      <h3>PDF Chat</h3>
+      <p>Upload PDFs and ask questions using intelligent AI document understanding.</p>
+    </div>
+
+    <div class="card">
+      <h3>Image Understanding</h3>
+      <p>Analyze screenshots, diagrams, photos, and visual content instantly.</p>
+    </div>
+
+    <div class="card">
+      <h3>Streaming AI</h3>
+      <p>Real-time token streaming responses similar to premium AI chat systems.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Notes</h3>
+      <p>Automatically summarize meetings, chats, PDFs, and study materials.</p>
+    </div>
+
+    <div class="card">
+      <h3>Persistent Memory</h3>
+      <p>Remember previous conversations and user preferences across sessions.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="demo" id="demo">
+
+  <div class="title">
+    <h2>Live AI Experience</h2>
+    <p>Interactive streaming AI assistant interface.</p>
+  </div>
+
+  <div class="chatbox">
+
+    <div class="chat-header">
+      MemoryMind AI Console
+    </div>
+
+    <div class="chat-body">
+
+      <div class="message user">
+        Analyze this uploaded PDF and explain the architecture diagram.
+      </div>
+
+      <div class="message ai">
+        I analyzed the uploaded PDF and extracted the main architecture components. The system uses multimodal orchestration, memory retrieval, and AI voice pipelines.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="footer" id="contact">
+  <p>
+    © 2026 MemoryMind AI • Multimodal AI Assistant Platform
+  </p>
+</footer>
+
+</body>
+</html>
