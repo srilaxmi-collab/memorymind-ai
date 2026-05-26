@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { app } from "./firebase.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -6,17 +6,8 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBaw6QKzIXqd299Fks9RPLI9heQ3Alq0Aw",
-  authDomain: "memorymind-ai-7748c.firebaseapp.com",
-  projectId: "memorymind-ai-7748c",
-  storageBucket: "memorymind-ai-7748c.firebasestorage.app",
-  messagingSenderId: "153493663214",
-  // Removed the space in the appId string
-  appId: "1:153493663214:web:54073d4e1788570ca232ff" 
-};
 
-const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 const signupBtn = document.getElementById("signupBtn");
