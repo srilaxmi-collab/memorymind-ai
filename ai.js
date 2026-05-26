@@ -1,34 +1,31 @@
-const sendBtn =
-  document.getElementById("sendBtn");
-
-const userInput =
-  document.getElementById("userInput");
-
-const chatBox =
-  document.getElementById("chatBox");
-
-sendBtn.addEventListener("click", async () => {
-
-  const message =
-    userInput.value.trim();
-
-  if (!message) return;
-
-  addMessage(message, "user");
-
-  userInput.value = "";
+export default async function handler(req, res) {
 
   try {
 
+    if (req.method !== "POST") {
+
+      return res.status(405).json({
+
+        error: "Method not allowed"
+
+      });
+
+    }
+
+    const { messages } = req.body;
+
     const response = await fetch(
 
-      "/api/chat",
+      "https://api.sambanova.ai/v1/chat/completions",
 
       {
 
         method: "POST",
 
         headers: {
+
+          "Authorization":
+            `Bearer ${process.env.SAMBANOVA_API_KEY}`,
 
           "Content-Type":
             "application/json"
@@ -37,17 +34,12 @@ sendBtn.addEventListener("click", async () => {
 
         body: JSON.stringify({
 
-          messages: [
+          model:
+            "Meta-Llama-3.1-8B-Instruct",
 
-            {
+          messages: messages,
 
-              role: "user",
-
-              content: message
-
-            }
-
-          ]
+          temperature: 0.7
 
         })
 
@@ -55,28 +47,27 @@ sendBtn.addEventListener("click", async () => {
 
     );
 
-    const data =
-      await response.json();
+    const text = await response.text();
 
-    console.log(data);
+    console.log(text);
 
-    if (data.error) {
+    try {
 
-      addMessage(
-        "Error: " + data.error,
-        "ai"
-      );
+      const data = JSON.parse(text);
 
-      return;
+      return res.status(200).json(data);
 
     }
 
-    const aiReply =
+    catch {
 
-      data.choices[0]
-      .message.content;
+      return res.status(500).json({
 
-    addMessage(aiReply, "ai");
+        error: text
+
+      });
+
+    }
 
   }
 
@@ -84,44 +75,12 @@ sendBtn.addEventListener("click", async () => {
 
     console.error(error);
 
-    addMessage(
-      "AI request failed",
-      "ai"
-    );
+    return res.status(500).json({
+
+      error: error.message
+
+    });
 
   }
-
-});
-
-function addMessage(text, sender) {
-
-  const div =
-    document.createElement("div");
-
-  div.style.padding = "15px";
-
-  div.style.margin = "10px";
-
-  div.style.borderRadius = "12px";
-
-  div.style.whiteSpace =
-    "pre-wrap";
-
-  div.style.color = "white";
-
-  div.style.background =
-
-    sender === "user"
-
-      ? "#20304d"
-
-      : "#17382d";
-
-  div.innerText = text;
-
-  chatBox.appendChild(div);
-
-  chatBox.scrollTop =
-    chatBox.scrollHeight;
 
 }
